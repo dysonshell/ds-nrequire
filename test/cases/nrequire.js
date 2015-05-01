@@ -1,13 +1,15 @@
 'use strict';
 var path = require('path');
 var tape = require('tape');
+var pick = require('lodash.pick');
 GLOBAL.APP_ROOT = path.resolve(__dirname, '..');
 
 tape(function(test) {
-    test.plan(6);
+    test.plan(7);
     require('../../');
+    test.equal(require.resolve('ccc/index/partials/t.html'), path.resolve(__dirname, '../node_modules/@ccc/index/partials/t.html'));
     require('../hello');
-    console.log('global', global);
+    console.log('global', pick(global, 'z a b c d t'.split(' ')));
     test.equal(global.z, 'z');
     test.equal(global.a, 'ma');
     test.equal(global.b, 'b');
