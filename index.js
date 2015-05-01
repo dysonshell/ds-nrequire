@@ -3,6 +3,7 @@
 var fs = require('fs');
 var path = require('path');
 var xtend = require('xtend');
+var str2js = require('string-to-js');
 
 var Module = module.constructor;
 var _resolveFilename = Module._resolveFilename;
@@ -67,4 +68,9 @@ Module._resolveFilename = function (request, parent) {
         }
         return result;
     }
+}
+
+Module._extensions['.html'] = function (module, filename) {
+    var content = fs.readFileSync(filename, 'utf8');
+    module._compile(str2js(content), filename);
 }
