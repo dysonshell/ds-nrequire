@@ -57,9 +57,14 @@ Module._resolveFilename = function (request, parent) {
 
             function findInNodeModules() {
                 try {
+                    var paths = Module._nodeModulePaths(path.dirname(newFileName));
+                    var appRootModulesPath;
+                    if (GLOBAL.APP_ROOT && paths.indexOf((appRootModulesPath = path.join(APP_ROOT, 'node_modules'))) === -1) {
+                        paths.unshift(appRootModulesPath);
+                    }
                     result = _resolveFilename.call(this, request.replace(/^ccc\//, '@ccc/'), xtend(parent, {
                         filename: newFileName,
-                        paths: Module._nodeModulePaths(path.dirname(newFileName))
+                        paths: paths,
                     }));
                 } catch (_err) {
                     throw err;

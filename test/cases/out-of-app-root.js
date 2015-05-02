@@ -8,7 +8,7 @@ tape(function(test) {
     test.plan(7);
     require('../../');
     test.equal(require.resolve('ccc/index/partials/t.html'), path.resolve(__dirname, '../example/node_modules/@ccc/index/partials/t.html'));
-    require('../example/hello');
+    require('../hello');
     console.log('global', pick(global, 'z a b c d t'.split(' ')));
     test.equal(global.z, 'z');
     test.equal(global.a, 'ma');
