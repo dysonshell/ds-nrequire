@@ -4,6 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var xtend = require('xtend');
 var str2js = require('string-to-js');
+var chokidar = require('chokidar');
 
 var Module = module.constructor;
 var _resolveFilename = Module._resolveFilename;
@@ -79,3 +80,24 @@ Module._extensions['.html'] = function (module, filename) {
     var content = fs.readFileSync(filename, 'utf8');
     module._compile(str2js(content), filename);
 }
+
+Module._extensions['.js'] = (function(origCompiler) {
+    var env = process.env.NODE_ENV || 'development';
+    return function(module, filename) {
+        origCompiler.apply(this, arguments);
+        if (exports.watchRequiredFilesToRestart) {
+            if (env === 'development' || path.basename(module.id) === 'touch_to_restart.js') {
+                chokidar.watch(module.id, {
+                    persistent: true,
+                    usePolling: true,
+                    followSymlinks: true,
+                }).on('change', function(filename) {
+                    console.log((new Date).toISOString(), filename, 'changed, exiting. (should be restarted)');
+                    setTimeout(function () {
+                        process.exit(0);
+                    }, Number(process.env.RESTART_DELAY) || 0);
+                });
+            }
+        }
+    };
+}(Module._extensions['.js']));
