@@ -76,10 +76,12 @@ Module._resolveFilename = function (request, parent) {
     }
 }
 
-Module._extensions['.html'] = function (module, filename) {
-    var content = fs.readFileSync(filename, 'utf8');
-    module._compile(str2js(content), filename);
-}
+'.html .css'.split(' ').forEach(function (ext) {
+    Module._extensions[ext] = function (module, filename) {
+        var content = fs.readFileSync(filename, 'utf8');
+        module._compile(str2js(content), filename);
+    };
+});
 
 Module._extensions['.js'] = (function(origCompiler) {
     var env = process.env.NODE_ENV || 'development';
