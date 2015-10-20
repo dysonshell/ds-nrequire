@@ -5,6 +5,10 @@ var path = require('path');
 var xtend = require('xtend');
 var str2js = require('string-to-js');
 var chokidar = require('chokidar');
+require("babel/register")({
+    optional: ["es7.functionBind"]
+});
+
 
 var Module = module.constructor;
 var _resolveFilename = Module._resolveFilename;
