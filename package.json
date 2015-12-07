@@ -1,17 +1,17 @@
 {
-  "name": "@ds/nrequire",
-  "version": "1.4.1",
-  "description": "用于 hack node.js 的 require，让 /ccc/ /node_modules/@ccc/ 下面的文件能够相互替代",
+  "name": "ds-nrequire",
+  "version": "0.0.0",
+  "description": "用于 hack node.js 的 require，让 ${APP_ROOT}/dsc/ ${APP_ROOT}/node_modules/@dsc/ 下面的文件能够相互替代",
   "main": "index.js",
   "scripts": {
     "test": "tape test/cases/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@gitlab.creditcloud.com:10022/ccfe/ds-nrequire.git"
+    "url": "ssh://git@github.com:dysonshell/ds-nrequire.git"
   },
   "author": "undoZen <undozen@creditcloud.com>",
-  "license": "private",
+  "license": "MIT",
   "dependencies": {
     "chokidar": "^1",
     "string-to-js": "0.0.1",
