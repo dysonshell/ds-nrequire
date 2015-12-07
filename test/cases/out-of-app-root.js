@@ -2,10 +2,7 @@
 var path = require('path');
 var tape = require('tape');
 var pick = require('lodash.pick');
-GLOBAL.DSCONFIG = {
-    APP_ROOT: path.resolve(__dirname, '../example'),
-    COMPONENT_PREFIX: 'ccc',
-};
+process.env.NODE_CONFIG_DIR = path.join(__dirname, '..', 'example', 'config');
 
 tape(function(test) {
     test.plan(7);
