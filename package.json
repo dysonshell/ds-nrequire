@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com:dysonshell/ds-nrequire.git"
+    "url": "ssh://git@github.com/dysonshell/ds-nrequire.git"
   },
   "author": "undoZen <undozen@creditcloud.com>",
   "license": "MIT",
