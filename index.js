@@ -2,13 +2,16 @@
 
 var fs = require('fs');
 var path = require('path');
+var assert = require('assert');
+var config = require('config');
+assert(config.dsAppRoot);
 var xtend = require('xtend');
 var str2js = require('string-to-js');
 var chokidar = require('chokidar');
 
 // config
-var APP_ROOT = (GLOBAL.DSCONFIG && GLOBAL.DSCONFIG.APP_ROOT) || process.env.DSCONFIG_APP_ROOT;
-var DSC = (GLOBAL.DSCONFIG && GLOBAL.DSCONFIG.COMPONENT_PREFIX) || process.env.DSCONFIG_COMPONENT_PREFIX || 'dsc';
+var APP_ROOT = config.dsAppRoot;
+var DSC = config.dsComponentPrefix || 'dsc';
 DSC = DSC.replace(/^\/+/, '').replace(/\/+$/, '') + '/';
 
 var Module = module.constructor;
