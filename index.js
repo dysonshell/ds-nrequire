@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var Module = require('module');
 var assert = require('assert');
 var config = require('config');
 assert(config.dsAppRoot);
@@ -14,7 +15,6 @@ var APP_ROOT = config.dsAppRoot;
 var DSC = config.dsComponentPrefix || 'dsc';
 DSC = DSC.replace(/^\/+/, '').replace(/\/+$/, '') + '/';
 
-var Module = module.constructor;
 var _resolveFilename = Module._resolveFilename;
 Module._resolveFilename = function () {
     return _resolveFilename.apply(this, arguments);
