@@ -1,6 +1,6 @@
 {
   "name": "ds-nrequire",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "用于 hack node.js 的 require，让 ${APP_ROOT}/dsc/ ${APP_ROOT}/node_modules/@dsc/ 下面的文件能够相互替代",
   "files": [
     "index.js"
